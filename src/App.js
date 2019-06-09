@@ -1,6 +1,7 @@
 import React from "react";
 import useInput from "./useInput";
-import UseTabs from "./useTabs";
+import useTabs from "./useTabs";
+import useTitle from "./useTitle";
 
 // Contents
 const content = [
@@ -17,11 +18,18 @@ const content = [
 ];
 
 const App = () => {
+  /* useInput */
+
   // @를 막아줌
   const validator = value => !value.includes("@");
-
   const name = useInput("Mr. ", validator);
-  const { currentItem, changeItem } = UseTabs(0, content);
+
+  /* useTabs */
+  const { currentItem, changeItem } = useTabs(0, content);
+
+  /* useTitle */
+  const titleUpdater = useTitle("Loading...");
+  setTimeout(() => titleUpdater("home"), 2000);
 
   return (
     <>
