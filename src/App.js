@@ -2,6 +2,7 @@ import React from "react";
 import useInput from "./useInput";
 import useTabs from "./useTabs";
 import useTitle from "./useTitle";
+import useClick from "./useClick";
 
 // Contents
 const content = [
@@ -31,18 +32,27 @@ const App = () => {
   const titleUpdater = useTitle("Loading...");
   setTimeout(() => titleUpdater("home"), 2000);
 
+  /* useClick */
+  const sayHello = () => console.log("say hello");
+  const title = useClick(sayHello);
+
   return (
     <>
-      <h1>Hello</h1>
-      <input placeholder="Name" {...name} />
-      <div>
-        {content.map((section, index) => (
-          <button key={section.id} onClick={() => changeItem(index)}>
-            {section.tab}
-          </button>
-        ))}
-      </div>
-      {currentItem.content}
+      <>
+        <h1>Hello</h1>
+        <input placeholder="Name" {...name} />
+        <div>
+          {content.map((section, index) => (
+            <button key={section.id} onClick={() => changeItem(index)}>
+              {section.tab}
+            </button>
+          ))}
+        </div>
+        {currentItem.content}
+      </>
+      <>
+        <h1 ref={title}>Hi</h1>
+      </>
     </>
   );
 };
