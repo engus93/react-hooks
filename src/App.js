@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import useInput from "./useInput";
 
 const App = () => {
-  const [item, setItem] = useState(1);
-  const incremetItem = () => setItem(item + 1);
-  const decrementItem = () => setItem(item - 1);
+  // @를 막아줌
+  const validator = value => !value.includes("@");
 
+  const name = useInput("Mr. ", validator);
   return (
     <div className="App">
-      <h1>Hello {item}</h1>
-      <h2>Start editing to see some magic happen</h2>
-      <button onClick={incremetItem}>Increment</button>
-      <button onClick={decrementItem}>Decrement</button>
+      <h1>Hello</h1>
+      <input placeholder="Name" {...name} />
     </div>
   );
 };
