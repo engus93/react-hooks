@@ -9,6 +9,8 @@ import { usePreventLeave } from "./usePreventLeave";
 import { useBeforeLeave } from "./useBeforeLeave";
 import { useFadeIn } from "./useFadeIn";
 import { useNetwork } from "./useNetwork";
+import { useScroll } from "./useScroll";
+import { useFullscreen } from "./useFullScreen";
 
 // Contents
 const content = [
@@ -68,8 +70,14 @@ const App = () => {
   };
   const onLine = useNetwork(handleNetworkChange);
 
+  /* useScroll */
+  const { y } = useScroll();
+
+  /* useFullScreen */
+  const { element, triggerFullScreen, exitFullScreen } = useFullscreen();
+
   return (
-    <>
+    <div style={{ height: "1000vh" }}>
       <>
         <h1>Hello</h1>
         <input placeholder="Name" {...name} />
@@ -110,7 +118,28 @@ const App = () => {
           <h4>{onLine ? "Online" : "Offline"}</h4>
         </div>
       </>
-    </>
+      <>
+        <div>
+          <h3>useScroll</h3>
+          <h4 style={{ color: y > 100 ? "red" : "blue" }}>Hi</h4>
+        </div>
+        <div>
+          <h3>useFullScreen</h3>
+          <div ref={element}>
+            <button onClick={exitFullScreen}>Exit fullScreen</button>
+          </div>
+          <img
+            ref={element}
+            src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E"
+            width="600px"
+            alt="dog"
+          />
+          <button onClick={triggerFullScreen} style={{ display: "block" }}>
+            Make FullScreen
+          </button>
+        </div>
+      </>
+    </div>
   );
 };
 
