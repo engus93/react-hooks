@@ -7,6 +7,8 @@ import { useHover } from "./useHover";
 import { useConfirm } from "./useConfirm";
 import { usePreventLeave } from "./usePreventLeave";
 import { useBeforeLeave } from "./useBeforeLeave";
+import { useFadeIn } from "./useFadeIn";
+import { useNetwork } from "./useNetwork";
 
 // Contents
 const content = [
@@ -56,6 +58,16 @@ const App = () => {
   const begForLife = () => console.log("Pls dont leave");
   useBeforeLeave(begForLife);
 
+  /* useFadeIn */
+  const fadeIn = useFadeIn(1, 1);
+  const fadeIn2 = useFadeIn(2, 2);
+
+  /* useNetwork */
+  const handleNetworkChange = online => {
+    console.log(online ? "we just went online" : "we are offline");
+  };
+  const onLine = useNetwork(handleNetworkChange);
+
   return (
     <>
       <>
@@ -85,6 +97,17 @@ const App = () => {
           <h3>usePreventLeave</h3>
           <button onClick={enablePrevent}>Protect</button>
           <button onClick={disablePrevent}>UnProtect</button>
+        </div>
+      </>
+      <>
+        <div>
+          <h3>useFadeIn</h3>
+          <h4 {...fadeIn}>useFadeIn</h4>
+          <p {...fadeIn2}>lalala</p>
+        </div>
+        <div>
+          <h3>useNetwork</h3>
+          <h4>{onLine ? "Online" : "Offline"}</h4>
         </div>
       </>
     </>
