@@ -6,6 +6,7 @@ import { useClick } from "./useClick";
 import { useHover } from "./useHover";
 import { useConfirm } from "./useConfirm";
 import { usePreventLeave } from "./usePreventLeave";
+import { useBeforeLeave } from "./useBeforeLeave";
 
 // Contents
 const content = [
@@ -50,6 +51,10 @@ const App = () => {
 
   /* usePreventLeave */
   const { enablePrevent, disablePrevent } = usePreventLeave();
+
+  /* useBeforeLeave */
+  const begForLife = () => console.log("Pls dont leave");
+  useBeforeLeave(begForLife);
 
   return (
     <>
