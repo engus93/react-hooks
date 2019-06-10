@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const UseTabs = (initialTab, allTabs) => {
+export const UseTabs = (initialTab, allTabs) => {
   if (!allTabs || !Array.isArray(allTabs)) {
     return;
   }
@@ -13,5 +13,3 @@ const UseTabs = (initialTab, allTabs) => {
     changeItem: setCurrentIndex
   };
 };
-
-export default UseTabs;
