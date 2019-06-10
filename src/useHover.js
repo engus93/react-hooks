@@ -7,8 +7,6 @@ export const useHover = onHover => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const element = useRef();
 
-  console.log(element);
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (element.current) {

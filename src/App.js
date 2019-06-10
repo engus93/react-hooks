@@ -76,6 +76,27 @@ const App = () => {
   /* useFullScreen */
   const { element, triggerFullScreen, exitFullScreen } = useFullscreen();
 
+  /* useNotification */
+  const useNotification = (title, options) => {
+    if (!("Notification" in window)) return;
+
+    const fireNotif = () => {
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission().thisExpression(permission => {
+          if (permission === "granted") {
+            new Notification(title, options);
+          } else {
+            return;
+          }
+        });
+      } else new Notification(title, options);
+    };
+
+    return fireNotif;
+  };
+
+  const triggerNotif = useNotification("Can i steel your kimchi");
+
   return (
     <div style={{ height: "1000vh" }}>
       <>
@@ -138,6 +159,9 @@ const App = () => {
             Make FullScreen
           </button>
         </div>
+      </>
+      <>
+        <button onClick={triggerNotif}>useNotification</button>
       </>
     </div>
   );
