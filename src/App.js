@@ -4,6 +4,8 @@ import { UseTabs } from "./useTabs";
 import { useTitle } from "./useTitle";
 import { useClick } from "./useClick";
 import { useHover } from "./useHover";
+import { useConfirm } from "./useConfirm";
+import { usePreventLeave } from "./usePreventLeave";
 
 // Contents
 const content = [
@@ -41,6 +43,14 @@ const App = () => {
   const sayBye = () => console.log("say bye");
   const titleTow = useHover(sayBye);
 
+  /* useConfirm */
+  const deleteWorld = () => console.log("deleting the world");
+  const cancelWorld = () => console.log("cancel");
+  const confirmDelete = useConfirm("Are you sure", deleteWorld, cancelWorld);
+
+  /* usePreventLeave */
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
   return (
     <>
       <>
@@ -60,6 +70,17 @@ const App = () => {
       </>
       <>
         <h1 ref={titleTow}>Hover Event</h1>
+      </>
+      <>
+        <>
+          <h3>useConfirm</h3>
+          <button onClick={confirmDelete}>Delete the world</button>
+        </>
+        <div>
+          <h3>usePreventLeave</h3>
+          <button onClick={enablePrevent}>Protect</button>
+          <button onClick={disablePrevent}>UnProtect</button>
+        </div>
       </>
     </>
   );
